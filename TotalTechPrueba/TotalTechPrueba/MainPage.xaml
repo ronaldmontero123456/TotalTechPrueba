@@ -1,24 +1,59 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TotalTechPrueba.MainPage">
+             x:Class="TotalTechPrueba.MainPage"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#5fa3d2">
 
-    <StackLayout>
-        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
-            <Label Text="Welcome to Xamarin.Forms!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
-        </Frame>
-        <Label Text="Start developing now" FontSize="Title" Padding="30,10,30,10"/>
-        <Label Text="Make changes to your XAML file and save to see your UI update in the running app with XAML Hot Reload. Give it a try!" FontSize="16" Padding="30,0,30,0"/>
-        <Label FontSize="16" Padding="30,24,30,0">
+    <Grid RowDefinitions="*,*,*">
+
+        <Label VerticalOptions="Center" TranslationY="-30">
             <Label.FormattedText>
                 <FormattedString>
-                    <FormattedString.Spans>
-                        <Span Text="Learn more at "/>
-                        <Span Text="https://aka.ms/xamarin-quickstart" FontAttributes="Bold"/>
-                    </FormattedString.Spans>
+                    <Span Text="Hello, what do yo " FontAttributes="Bold" TextColor="White" FontSize="30"></Span>
+                    <Span Text="want to watch" FontAttributes="Bold" TextColor="White" FontSize="30"></Span>
                 </FormattedString>
             </Label.FormattedText>
         </Label>
-    </StackLayout>
+        <Frame Padding="10" Grid.Row="1"  BackgroundColor="#E6EAEA" VerticalOptions="Start" CornerRadius="25" Margin="50" BorderColor="Transparent">
+            <StackLayout Spacing="15" Orientation="Horizontal">
+                <Path Fill="#2D2942" Opacity="0.5" Data="M17.8901 16.8296L12.6613 11.6007C13.653 10.3764 14.25 8.81977 14.25 7.12503C14.25 3.19631 11.0537 0 7.12499 0C3.19627 0 0 3.19631 0 7.12503C0 11.0537 3.19631 14.2501 7.12503 14.2501C8.81977 14.2501 10.3764 13.653 11.6007 12.6613L16.8296 17.8902C16.9761 18.0366 17.2135 18.0366 17.36 17.8902L17.8902 17.3599C18.0366 17.2135 18.0366 16.976 17.8901 16.8296ZM7.12503 12.75C4.02322 12.75 1.50001 10.2268 1.50001 7.12503C1.50001 4.02322 4.02322 1.50001 7.12503 1.50001C10.2268 1.50001 12.75 4.02322 12.75 7.12503C12.75 10.2268 10.2268 12.75 7.12503 12.75Z" 
+                            Aspect="Uniform" VerticalOptions="Center" HeightRequest="18" WidthRequest="18"/>
+                <Label Text="Search" TextColor="#2D2942" FontSize="15" Opacity="0.5" VerticalOptions="Center" 
+                               HorizontalOptions="Center"/>
+            </StackLayout>
+        </Frame>
+
+        <Grid Grid.Row="2" RowDefinitions="*,*,*">
+
+
+            <CollectionView  SelectionMode="Single" ItemsSource="{Binding Movies}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="2"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.EmptyView>
+                    <Label Text="No se encontraron resultados" TextColor="Gray" HorizontalOptions="Center" VerticalOptions="Center"/>
+                </CollectionView.EmptyView>
+            </CollectionView>
+
+            <CollectionView Grid.Row="1" SelectionMode="Single" ItemsSource="{Binding Movies}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="2"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.EmptyView>
+                    <Label Text="No se encontraron resultados" TextColor="Gray" HorizontalOptions="Center" VerticalOptions="Center"/>
+                </CollectionView.EmptyView>
+            </CollectionView>
+
+            <CollectionView Grid.Row="2" SelectionMode="Single" ItemsSource="{Binding Movies}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="2"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.EmptyView>
+                    <Label Text="No se encontraron resultados" TextColor="Gray" HorizontalOptions="Center" VerticalOptions="Center"/>
+                </CollectionView.EmptyView>
+            </CollectionView>
+        </Grid>
+    </Grid>
 
 </ContentPage>
