@@ -1,4 +1,5 @@
 ﻿
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -30,5 +31,7 @@ namespace TotalTechPrueba.Model
          public bool video { get; set; }
          public float vote_average { get; set; }
          public int vote_count { get; set; }
-     }
+        [JsonIgnore]
+        public string ImageSource => $"https://image.tmdb.org/t/p/w500{backdrop_path}";
+    }
 }

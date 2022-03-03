@@ -40,7 +40,7 @@ namespace TotalTechPrueba.Services
         public async Task<List<Result>> GetMovies(string type) 
         {
 
-            if (CrossConnectivity.Current.IsConnected)
+            if (!CrossConnectivity.Current.IsConnected)
                 await Application.Current.MainPage.DisplayAlert("Aviso", "No estas conectado a internet", "Aceptar");
     
 

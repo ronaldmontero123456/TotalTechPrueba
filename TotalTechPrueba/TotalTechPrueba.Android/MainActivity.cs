@@ -5,8 +5,8 @@ using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
 using Android.Views;
-using FFImageLoading.Forms.Platform;
 using System.Threading.Tasks;
+using FFImageLoading.Forms.Platform;
 
 namespace TotalTechPrueba.Droid
 {
