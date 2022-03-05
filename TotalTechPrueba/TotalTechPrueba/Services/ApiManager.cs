@@ -15,23 +15,6 @@ namespace TotalTechPrueba.Services
     {
         private HttpClient client;
 
-        private static ApiManager _instance;
-        public static ApiManager GetInstance(string url)
-        {
-            if (_instance == null)
-            {
-                lock (typeof(ApiManager))
-                {
-                    if (_instance == null)
-                    {
-                        _instance = new ApiManager(url);
-                    }
-                }
-            }
-
-            return _instance;
-        }
-
         public ApiManager(string url)
         {
             client = new HttpClient() { BaseAddress = new Uri(url) };
@@ -40,7 +23,7 @@ namespace TotalTechPrueba.Services
         public async Task<List<Result>> GetMovies(string type) 
         {
 
-            if (!CrossConnectivity.Current.IsConnected)
+            if (CrossConnectivity.Current.IsConnected)
                 await Application.Current.MainPage.DisplayAlert("Aviso", "No estas conectado a internet", "Aceptar");
     
 
