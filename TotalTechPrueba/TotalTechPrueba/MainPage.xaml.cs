@@ -18,5 +18,11 @@ namespace TotalTechPrueba
             BindingContext = new MainPageViewmodel();
             InitializeComponent();
         }
+
+        protected override void OnAppearing()
+        {
+            (BindingContext as MainPageViewmodel).CleanSelected();
+            base.OnAppearing();
+        }
     }
 }

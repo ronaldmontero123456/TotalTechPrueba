@@ -70,6 +70,11 @@ namespace TotalTechPrueba.ViewModel
                 return;
             }
 
+            SetMovies(searchbar);
+        }
+
+        private void SetMovies(string searchbar)
+        {
             Popular = new ObservableCollection<Result>(MoviesToGivePopular.Where(mp => mp.title.ToUpper().Contains(searchbar.ToUpper())));
             TopRated = new ObservableCollection<Result>(MoviesToGiveTopRated.Where(mt => mt.title.Contains(searchbar.ToUpper())));
             UpComing = new ObservableCollection<Result>(MoviesToGiveUpComing.Where(mu => mu.title.ToUpper().Contains(searchbar.ToUpper())));
@@ -91,6 +96,11 @@ namespace TotalTechPrueba.ViewModel
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
+        public void CleanSelected()
+        {
+            SelectedImagePopular = null;
+            SelectedImageUpComing = null;
+            SelectedImageTopRated = null;
+        }
     }
 }

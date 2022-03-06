@@ -86,7 +86,7 @@
                             <Label.FormattedText>
                                 <FormattedString>
                                     <Span Text="Genre:  " TextColor="White"></Span>
-                                    <Span Text="{Binding Genre}" TextColor="White"></Span>
+                                    <Span Text="{Binding Genre}" TextColor="Gray"></Span>
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
@@ -95,7 +95,7 @@
                             <Label.FormattedText>
                                 <FormattedString>
                                     <Span Text="Release:  " TextColor="White"></Span>
-                                    <Span Text="{Binding MovieDetail.ReleaseDate}" TextColor="White"></Span>
+                                    <Span Text="{Binding MovieDetail.ReleaseDate}" TextColor="Gray"></Span>
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
