@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TotalTechPrueba.Model;
 using TotalTechPrueba.Services;
+using TotalTechPrueba.View;
 using Xamarin.Forms;
 
 namespace TotalTechPrueba.ViewModel
@@ -24,9 +25,17 @@ namespace TotalTechPrueba.ViewModel
 
         private ObservableCollection<Result> upcoming;
         public ObservableCollection<Result> UpComing { get => upcoming; set { upcoming = value; RaiseOnPropertyChanged(); } }
+        public Command ImageCommand { get; private set; }
         public MainPageViewmodel()
         {
+            ImageCommand = new Command(PushDetails);
+
             GetMovies();
+        }
+
+        private void PushDetails(object id)
+        {
+            App.Current.MainPage.Navigation.PushAsync(new MovilDetailsPage());
         }
 
         public async void GetMovies()
