@@ -38,7 +38,9 @@
                                          WidthRequest="150"
                                          HeightRequest="200"
                                          Aspect="AspectFill" 
-                                         Source="{Binding ImageSource}"/>
+                                         Source="{Binding ImageSource}"
+                                         Command="{Binding ImageCommand}"
+                                         CommandParameter="{Binding id}"/>
                                     <Label Grid.Row="1" WidthRequest="12" Grid.ColumnSpan="2" Text="{Binding title}" TextColor="White"/>
 
                                 </Grid>
@@ -60,7 +62,9 @@
                                          WidthRequest="150"
                                          HeightRequest="200"
                                          Aspect="AspectFill" 
-                                         Source="{Binding ImageSource}"/>
+                                         Source="{Binding ImageSource}"
+                                         Command="{Binding ImageCommand}"
+                                         CommandParameter="{Binding id}"/>
                                     <Label Grid.Row="1" WidthRequest="12" Grid.ColumnSpan="2" Text="{Binding title}" TextColor="White"/>
                                 </Grid>
                             </DataTemplate>
@@ -81,7 +85,9 @@
                                          WidthRequest="150"
                                          HeightRequest="200"
                                          Aspect="AspectFill" 
-                                         Source="{Binding ImageSource}"/>
+                                         Source="{Binding ImageSource}"
+                                         Command="{Binding ImageCommand}"
+                                         CommandParameter="{Binding id}"/>
                                     <Grid Grid.Row="1" RowDefinitions="*,*" VerticalOptions="End" WidthRequest="12" Grid.ColumnSpan="2">
                                         <Label WidthRequest="12"  Text="{Binding title}" TextColor="White"/>
 

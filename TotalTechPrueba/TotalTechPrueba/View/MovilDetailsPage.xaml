@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TotalTechPrueba.View.MovilDetailsPage"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:local="clr-namespace:TotalTechPrueba.View.Controls"
+             BackgroundColor="#293646">
+    <ContentPage.Content>
+        <Grid RowDefinitions="300,auto,*">
+            <Image 
+                   Aspect="AspectFill"
+                   Source='https://image.tmdb.org/t/p/w500/iQFcwSGbZXMkeyKrxbPnwnRo5fl.jpg'></Image>
+
+            <Grid Grid.Row="1" RowDefinitions="*,*" ColumnDefinitions="*,*">
+
+                <Label Text="Aquaman"
+                       TextColor="White" 
+                       FontSize="34" 
+                       FontAttributes="Bold"
+                       Margin="23,23,0,0"></Label>
+                
+                <Button Text="WATCH NOW"
+                        Grid.Row="1"
+                        TextColor="White"
+                        BackgroundColor="Gray"
+                        CornerRadius="25"
+                        VerticalOptions="Start"
+                        Margin="23,12,0,0"/>
+
+                <local:RatingView Grid.Row="1" Grid.Column="1" 
+                                  VerticalOptions="Center"
+                                  TranslationX="22"
+                                  HeightRequest="13"
+                                  Rating="{Binding Rating}" Path="{DynamicResource StarsPath}"/>
+            </Grid>
+            <Label  Grid.Row="2" 
+                    TextColor="White"
+                    VerticalOptions="Center"
+                    Margin="23,-160,23,0"
+                    Text="in 1985 Maine, lighthouse keeper Thomas Curry
+                             rescues Atlanna, the queen of the underwater
+                             nation of Atlantis, during a storm. They eventually
+                             fall in love and have a son named Arthur, who is
+                             born with the power to communicate with marine
+                             lifeforms"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
