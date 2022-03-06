@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TotalTechPrueba.Services;
+using TotalTechPrueba.View;
 using TotalTechPrueba.ViewModel;
 using Xamarin.Forms;
 
@@ -16,11 +17,6 @@ namespace TotalTechPrueba
         {
             BindingContext = new MainPageViewmodel();
             InitializeComponent();
-        }
-
-        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
-        {
-
         }
     }
 }

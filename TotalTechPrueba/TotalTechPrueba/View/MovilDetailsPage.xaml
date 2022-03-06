@@ -6,43 +6,70 @@
              xmlns:local="clr-namespace:TotalTechPrueba.View.Controls"
              BackgroundColor="#293646">
     <ContentPage.Content>
-        <Grid RowDefinitions="300,auto,*">
+        <Grid RowDefinitions="300,*,*">
             <Image 
                    Aspect="AspectFill"
-                   Source='https://image.tmdb.org/t/p/w500/iQFcwSGbZXMkeyKrxbPnwnRo5fl.jpg'></Image>
+                   Source="{Binding MovieDetail.ImageSource}"></Image>
 
-            <Grid Grid.Row="1" RowDefinitions="*,*" ColumnDefinitions="*,*">
+            <Grid Grid.Row="1" RowDefinitions="*" ColumnDefinitions="*,*">
 
-                <Label Text="Aquaman"
+
+                <StackLayout Grid.ColumnSpan="2">
+                    <Label Text="{Binding MovieDetail.title}"
                        TextColor="White" 
-                       FontSize="34" 
+                       FontSize="20" 
                        FontAttributes="Bold"
                        Margin="23,23,0,0"></Label>
-                
-                <Button Text="WATCH NOW"
-                        Grid.Row="1"
-                        TextColor="White"
-                        BackgroundColor="Gray"
-                        CornerRadius="25"
-                        VerticalOptions="Start"
-                        Margin="23,12,0,0"/>
 
-                <local:RatingView Grid.Row="1" Grid.Column="1" 
+                    <Button Text="WATCH NOW"
+                            HorizontalOptions="StartAndExpand"
+                            TextColor="White"
+                            BackgroundColor="Gray"
+                            CornerRadius="25"
+                            HeightRequest="35"
+                            VerticalOptions="Start"
+                            TranslationY="12"
+                            TranslationX="23"/>
+                    <Label  
+                        TextColor="Gray"
+                        VerticalOptions="Center"
+                        Margin="23,45"
+                        Text="{Binding MovieDetail.overview}"/>
+                </StackLayout>
+
+                <local:RatingView Grid.Column="1" 
                                   VerticalOptions="Center"
                                   TranslationX="22"
+                                  TranslationY="-25"
                                   HeightRequest="13"
-                                  Rating="{Binding Rating}" Path="{DynamicResource StarsPath}"/>
+                                  Rating="{Binding MovieDetail.Rating}" Path="{DynamicResource StarsPath}"/>
             </Grid>
-            <Label  Grid.Row="2" 
-                    TextColor="White"
-                    VerticalOptions="Center"
-                    Margin="23,-160,23,0"
-                    Text="in 1985 Maine, lighthouse keeper Thomas Curry
-                             rescues Atlanna, the queen of the underwater
-                             nation of Atlantis, during a storm. They eventually
-                             fall in love and have a son named Arthur, who is
-                             born with the power to communicate with marine
-                             lifeforms"/>
+
+            <CollectionView SelectionMode="None"
+                                    Grid.Row="2" 
+                                    ItemsSource="{Binding MovieCredits}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Horizontal" HorizontalItemSpacing="20"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.EmptyView>
+                    <Label Text="No se encontraron resultados" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="auto,*,*" RowDefinitions="auto,*">
+                            <ImageButton CornerRadius="25"
+                                         WidthRequest="50"
+                                         HeightRequest="50"
+                                         IsEnabled="False"
+                                         Aspect="AspectFill" 
+                                         Source="{Binding ImageSource}">
+                            </ImageButton>
+
+                            <Label Grid.Row="1" WidthRequest="12" Grid.ColumnSpan="2" Text="{Binding name}" TextColor="White"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -3,8 +3,32 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TotalTechPrueba.MainPage"
              xmlns:local="clr-namespace:TotalTechPrueba.View.Controls"
+             xmlns:convert="clr-namespace:TotalTechPrueba.ViewModel.Converters"
+             xmlns:behavior="clr-namespace:TotalTechPrueba.View.Controls.Behavior"
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="#5fa3d2">
+
+    <ContentPage.Resources>
+        <Style TargetType="Grid">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="Transparent" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+
+        <ResourceDictionary>
+            <convert:ItemTappedEventArgsConverter x:Key="ItemTappedConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <Grid RowDefinitions="*,auto,*">
         <StackLayout VerticalOptions="Center">
@@ -16,34 +40,44 @@
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
-            <Frame Padding="10" HeightRequest="25" HorizontalOptions="Center" Opacity="0.5"  BackgroundColor="#E6EAEA" VerticalOptions="Start" CornerRadius="25" BorderColor="Transparent">
-                <SearchBar Placeholder="Search"  BackgroundColor="Transparent" />
+            <Frame Padding="10" HeightRequest="25" HorizontalOptions="Center" Opacity="0.5" 
+                   BackgroundColor="#E6EAEA" VerticalOptions="Start" 
+                   CornerRadius="25" BorderColor="Transparent">
+                <SearchBar Placeholder="Search"  SearchCommand="{Binding SearchBarCommand}" 
+                           BackgroundColor="Transparent">
+                    <SearchBar.Behaviors>
+                        <behavior:EventToCommandBehavior
+                            EventName="TextChanged" 
+                            Command="{Binding SearchBarCommand}"
+                            EventArgsConverter="{StaticResource ItemTappedConverter}" />
+                    </SearchBar.Behaviors>
+                </SearchBar>
             </Frame>
         </StackLayout>
 
         <ScrollView Grid.RowSpan="2" Grid.Row="2">
             <Frame CornerRadius="25" BackgroundColor="#293646">
                 <Grid TranslationY="60" Margin="-20" RowDefinitions="300,300,350">
-                    <CollectionView  ItemsSource="{Binding Popular}">
+                    <Label Text="Popular" TextColor="White" TranslationY="-23" FontAttributes="Bold"/>
+                    <CollectionView SelectionMode="Single"
+                                    SelectedItem="{Binding SelectedImagePopular}"
+                                    ItemsSource="{Binding Popular}">
                         <CollectionView.ItemsLayout>
                             <GridItemsLayout Orientation="Horizontal" HorizontalItemSpacing="20"/>
                         </CollectionView.ItemsLayout>
                         <CollectionView.EmptyView>
-                            <Label Text="No se encontraron resultados" TextColor="Gray" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            <Label Text="No se encontraron resultados" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
                         </CollectionView.EmptyView>
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <Grid ColumnDefinitions="auto,*,*" RowDefinitions="auto,*">
                                     <ImageButton CornerRadius="35"
+                                         IsEnabled="False"
                                          WidthRequest="150"
                                          HeightRequest="200"
                                          Aspect="AspectFill" 
-                                         Source="{Binding ImageSource}"
-                                         Command="{Binding ImageCommand}"
-                                         CommandParameter="{Binding id}"/>
+                                         Source="{Binding ImageSource}"/>
                                     <Label Grid.Row="1" WidthRequest="12" Grid.ColumnSpan="2"  Text="{Binding title}" TextColor="White"/>
-
-
                                     <local:RatingView Grid.Row="2"
                                                       VerticalOptions="Center"
                                                       TranslationX="-35"
@@ -55,13 +89,17 @@
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
-
-                    <CollectionView Grid.Row="1" SelectionMode="None" ItemsSource="{Binding TopRated}">
+                    <Label Text="Top Rate" Grid.Row="1" TextColor="White" TranslationY="-23" FontAttributes="Bold"/>
+                    <CollectionView SelectionMode="Single"
+                                    SelectedItem="{Binding SelectedImageTopRated}"
+                                    Grid.Row="1" 
+                                    IsEnabled="False"
+                                    ItemsSource="{Binding TopRated}">
                         <CollectionView.ItemsLayout>
                             <GridItemsLayout Orientation="Horizontal" HorizontalItemSpacing="20"/>
                         </CollectionView.ItemsLayout>
                         <CollectionView.EmptyView>
-                            <Label Text="No se encontraron resultados" TextColor="Gray" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            <Label Text="No se encontraron resultados" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
                         </CollectionView.EmptyView>
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
@@ -69,6 +107,7 @@
                                     <ImageButton CornerRadius="35"
                                          WidthRequest="150"
                                          HeightRequest="200"
+                                         IsEnabled="False"
                                          Aspect="AspectFill" 
                                          Source="{Binding ImageSource}">
                                     </ImageButton>
@@ -85,35 +124,36 @@
                         </CollectionView.ItemTemplate>
                     </CollectionView>
 
-                    <CollectionView Grid.Row="2" SelectionMode="None" ItemsSource="{Binding UpComing}">
+                    <Label Text="Upcoming" Grid.Row="2" TextColor="White" TranslationY="-23" FontAttributes="Bold"/>
+                    <CollectionView SelectionMode="Single"
+                                    SelectedItem="{Binding SelectedImageUpComing}"
+                                    Grid.Row="2" 
+                                    ItemsSource="{Binding UpComing}">
                         <CollectionView.ItemsLayout>
                             <GridItemsLayout Orientation="Horizontal" HorizontalItemSpacing="20"/>
                         </CollectionView.ItemsLayout>
                         <CollectionView.EmptyView>
-                            <Label Text="No se encontraron resultados" TextColor="Gray" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            <Label Text="No se encontraron resultados" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
                         </CollectionView.EmptyView>
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
-                                <Grid ColumnDefinitions="auto,*" RowDefinitions="auto,*">
+                                <Grid ColumnDefinitions="auto,*,*" RowDefinitions="auto,*">
                                     <ImageButton CornerRadius="35"
                                          WidthRequest="150"
                                          HeightRequest="200"
+                                         IsEnabled="False"
                                          Aspect="AspectFill" 
-                                         Source="{Binding ImageSource}"
-                                         Command="{Binding ImageCommand}"
-                                         CommandParameter="{Binding id}"/>
-                                    <Grid Grid.Row="1" RowDefinitions="*,*" VerticalOptions="End" WidthRequest="12" Grid.ColumnSpan="2">
-                                        <Label WidthRequest="12"  Text="{Binding title}" TextColor="White"/>
+                                         Source="{Binding ImageSource}">
+                                    </ImageButton>
 
+                                    <Label Grid.Row="1" WidthRequest="12" Grid.ColumnSpan="2" Text="{Binding title}" TextColor="White"/>
 
                                     <local:RatingView 
                                                       VerticalOptions="Center"
-                                                      TranslationX="-37"
-                                                      TranslationY="12"
+                                                      TranslationX="-35"
+                                                      TranslationY="160"
                                                       HeightRequest="13"
                                                       Rating="{Binding Rating}" Path="{DynamicResource StarsPath}"/>
-                                
-                                    </Grid>
                                 </Grid>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>

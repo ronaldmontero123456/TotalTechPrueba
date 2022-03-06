@@ -24,8 +24,10 @@ namespace TotalTechPrueba.Services
         {
 
             if (!CrossConnectivity.Current.IsConnected)
+            {
                 await Application.Current.MainPage.DisplayAlert("Aviso", "No estas conectado a internet", "Aceptar");
-    
+                return null;
+            }
 
             var request = await client.GetAsync($"/3/movie/{type}?api_key=763032488904923aa0bac2b791e3589b&language=en-US&page=1");
     
@@ -39,13 +41,33 @@ namespace TotalTechPrueba.Services
         public async Task<MovieDetails> GetMovieDetails(int id)
         {
 
-            if (CrossConnectivity.Current.IsConnected)
+            if (!CrossConnectivity.Current.IsConnected)
+            {
                 await Application.Current.MainPage.DisplayAlert("Aviso", "No estas conectado a internet", "Aceptar");
+                return null;
+            }
 
-            var request =  await client.GetAsync($"/3/movie/{id}?api_key=763032488904923aa0bac2b791e3589b&language=en-US&page=1");
+            var request = await client.GetAsync($"/3/movie/{id}?api_key=763032488904923aa0bac2b791e3589b&language=en-US&page=1");
 
-            if(request.IsSuccessStatusCode)
+            if (request.IsSuccessStatusCode)
                 return JsonConvert.DeserializeObject<MovieDetails>(request.Content.ReadAsStringAsync().Result);
+
+            return null;
+        }
+        
+        public async Task<List<Cast>> GetMovieCredits(int id)
+        {
+
+            if (!CrossConnectivity.Current.IsConnected)
+            {
+                await Application.Current.MainPage.DisplayAlert("Aviso", "No estas conectado a internet", "Aceptar");
+                return null;
+            }
+
+            var request = await client.GetAsync($"/3/movie/{id}/credits?api_key=763032488904923aa0bac2b791e3589b&language=en-US&page=1");
+
+            if (request.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<Credits>(request.Content.ReadAsStringAsync().Result).cast.Take(10).ToList();
 
             return null;
         }
