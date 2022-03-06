@@ -34,7 +34,8 @@ namespace TotalTechPrueba.Model
 
         [JsonIgnore]
         public string ImageSource => $"https://image.tmdb.org/t/p/w500{backdrop_path}";
+
         [JsonIgnore]
-        public double Rating => vote_average > 0 ? vote_average / 2 : 0;
+        public float Rating => vote_average > 0 ? vote_average / 2 : 0;
     }
 }

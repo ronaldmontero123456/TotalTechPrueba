@@ -67,7 +67,7 @@ namespace TotalTechPrueba.View.Controls
             using (SKPaint paint = new SKPaint())
             {
                 paint.Style = SKPaintStyle.Fill;
-                paint.Color = SKColor.Parse("#FFBA00");
+                paint.Color = new SKColor(255,255,255,35);
                 paint.StrokeCap = SKStrokeCap.Round;
                 paint.StrokeJoin = SKStrokeJoin.Round;
                 paint.IsAntialias = true;

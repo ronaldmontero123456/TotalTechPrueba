@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using TotalTechPrueba.Model;
 using TotalTechPrueba.Services;
 using TotalTechPrueba.View;
@@ -25,7 +26,8 @@ namespace TotalTechPrueba.ViewModel
 
         private ObservableCollection<Result> upcoming;
         public ObservableCollection<Result> UpComing { get => upcoming; set { upcoming = value; RaiseOnPropertyChanged(); } }
-        public Command ImageCommand { get; private set; }
+        public Command imagecommand { get; private set; }
+        public Command ImageCommand { get => imagecommand; set { imagecommand = value; RaiseOnPropertyChanged(); } }
         public MainPageViewmodel()
         {
             ImageCommand = new Command(PushDetails);

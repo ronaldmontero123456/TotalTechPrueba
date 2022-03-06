@@ -17,5 +17,10 @@ namespace TotalTechPrueba
             BindingContext = new MainPageViewmodel();
             InitializeComponent();
         }
+
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+
+        }
     }
 }
