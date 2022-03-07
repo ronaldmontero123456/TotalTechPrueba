@@ -17,5 +17,10 @@ namespace TotalTechPrueba.View
             BindingContext = new MovieDetailsViewmodel(id);
             InitializeComponent();
         }
+
+        private void ImageButton_Clicked(object sender, EventArgs e)
+        {
+
+        }
     }
 }

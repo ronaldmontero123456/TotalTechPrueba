@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Windows.Input;
 using TotalTechPrueba.Model;
 using TotalTechPrueba.Services;
 using Xamarin.Forms;
@@ -13,6 +14,9 @@ namespace TotalTechPrueba.ViewModel
     public class MovieDetailsViewmodel: INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public ICommand ImageButtonCommand { get; private set; }
+
         private MovieDetails moviedetail;
         public MovieDetails MovieDetail { get => moviedetail; set { moviedetail = value; RaiseOnPropertyChanged(); } }
 
@@ -23,6 +27,8 @@ namespace TotalTechPrueba.ViewModel
         public string Genre { get => genre; set { genre = value; RaiseOnPropertyChanged(); } }
         public MovieDetailsViewmodel(int id)
         {
+            ImageButtonCommand = new Command(GoBack);
+
             GetMovieDetail(id);
             GetMovieCredits(id);
         }
@@ -42,6 +48,10 @@ namespace TotalTechPrueba.ViewModel
 
         }
 
+        private void GoBack()
+        {
+            App.Current.MainPage.Navigation.PopAsync(true);
+        }
         public void RaiseOnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

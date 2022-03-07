@@ -4,12 +4,33 @@
              x:Class="TotalTechPrueba.View.MovilDetailsPage"
              NavigationPage.HasNavigationBar="False"
              xmlns:local="clr-namespace:TotalTechPrueba.View.Controls"
+             xmlns:convert="clr-namespace:TotalTechPrueba.ViewModel.Converters"
+             xmlns:behavior="clr-namespace:TotalTechPrueba.View.Controls.Behavior"
              BackgroundColor="#293646">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <convert:ClickedEventArgsConvert x:Key="ClickedConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <ContentPage.Content>
         <Grid RowDefinitions="300,300,*">
+
             <Image 
                    Aspect="AspectFill"
                    Source="{Binding MovieDetail.ImageSource}"></Image>
+
+
+            <ImageButton Source="back.png" Margin="20,30" BackgroundColor="Transparent" HorizontalOptions="Start" VerticalOptions="Start"
+                             HeightRequest="24" WidthRequest="24">
+                <ImageButton.Behaviors>
+                    <behavior:EventToCommandBehavior
+                            EventName="Clicked" 
+                            Command="{Binding ImageButtonCommand}"
+                            EventArgsConverter="{StaticResource ClickedConverter}" />
+                </ImageButton.Behaviors>
+            </ImageButton>
 
             <Grid Grid.Row="1" RowDefinitions="*" ColumnDefinitions="*,*">
 
@@ -41,11 +62,11 @@
             </Grid>
 
             <ScrollView TranslationY="110" Grid.Row="1">
-                <StackLayout Spacing="-26">
+                <StackLayout Margin="23,23,0,0" Spacing="-26">
                     <Label  
                         TextColor="Gray"
                         VerticalOptions="Center"
-                        Margin="23,45"
+                        Margin="0,-2,45,45"
                         Text="{Binding MovieDetail.overview}"/>
 
                     <CollectionView SelectionMode="None" 
