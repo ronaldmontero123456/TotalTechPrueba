@@ -43,7 +43,7 @@
             <Frame Padding="10" HeightRequest="25" HorizontalOptions="Center" Opacity="0.5" 
                    BackgroundColor="#E6EAEA" VerticalOptions="Start" 
                    CornerRadius="25" BorderColor="Transparent">
-                <SearchBar Placeholder="Search"  SearchCommand="{Binding SearchBarCommand}" 
+                <SearchBar Placeholder="Search"  
                            BackgroundColor="Transparent">
                     <SearchBar.Behaviors>
                         <behavior:EventToCommandBehavior
