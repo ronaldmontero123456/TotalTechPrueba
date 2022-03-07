@@ -6,7 +6,6 @@ using Android.Runtime;
 using Android.OS;
 using Android.Views;
 using System.Threading.Tasks;
-using FFImageLoading.Forms.Platform;
 
 namespace TotalTechPrueba.Droid
 {
@@ -24,8 +23,6 @@ namespace TotalTechPrueba.Droid
 
 
             base.OnCreate(savedInstanceState);
-
-            CachedImageRenderer.Init(false);
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);

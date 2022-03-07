@@ -62,7 +62,7 @@
             </Grid>
 
             <ScrollView TranslationY="110" Grid.Row="1">
-                <StackLayout Margin="23,23,0,0" Spacing="-26">
+                <StackLayout Margin="23,23,0,-100" Spacing="-26">
                     <Label  
                         TextColor="Gray"
                         VerticalOptions="Center"

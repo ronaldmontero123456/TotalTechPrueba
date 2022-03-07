@@ -76,7 +76,7 @@ namespace TotalTechPrueba.ViewModel
         private void SetMovies(string searchbar)
         {
             Popular = new ObservableCollection<Result>(MoviesToGivePopular.Where(mp => mp.title.ToUpper().Contains(searchbar.ToUpper())));
-            TopRated = new ObservableCollection<Result>(MoviesToGiveTopRated.Where(mt => mt.title.Contains(searchbar.ToUpper())));
+            TopRated = new ObservableCollection<Result>(MoviesToGiveTopRated.Where(mt => mt.title.ToUpper().Contains(searchbar.ToUpper())));
             UpComing = new ObservableCollection<Result>(MoviesToGiveUpComing.Where(mu => mu.title.ToUpper().Contains(searchbar.ToUpper())));
         }
 
