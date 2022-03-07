@@ -57,7 +57,7 @@
 
         <ScrollView Grid.RowSpan="2" Grid.Row="2">
             <Frame CornerRadius="25" BackgroundColor="#293646">
-                <Grid TranslationY="60" TranslationX="22" Margin="-20" RowDefinitions="300,300,350">
+                <Grid TranslationY="60" Margin="-20" RowDefinitions="300,300,350">
                     <Label Text="Popular" TextColor="White" TranslationY="-23" FontAttributes="Bold"/>
                     <CollectionView SelectionMode="Single"
                                     SelectedItem="{Binding SelectedImagePopular}"
