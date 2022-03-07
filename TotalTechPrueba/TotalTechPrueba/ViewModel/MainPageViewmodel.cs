@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using TotalTechPrueba.Model;
 using TotalTechPrueba.Services;
@@ -33,7 +29,7 @@ namespace TotalTechPrueba.ViewModel
 
         private Result selectedimageupcoming;
         public Result SelectedImageUpComing { get => selectedimageupcoming; set { selectedimageupcoming = value; RaiseOnPropertyChanged(); if (value != null) { PushDetails(value.id); } } }
-        
+
         private ObservableCollection<Result> upcoming;
         public ObservableCollection<Result> UpComing { get => upcoming; set { upcoming = value; RaiseOnPropertyChanged(); } }
 

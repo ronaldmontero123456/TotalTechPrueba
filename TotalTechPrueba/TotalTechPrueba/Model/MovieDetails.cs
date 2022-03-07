@@ -1,7 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace TotalTechPrueba.Model
 {
@@ -40,7 +37,7 @@ namespace TotalTechPrueba.Model
         public double Rating => vote_average > 0 ? vote_average / 2 : 0;
 
         [JsonIgnore]
-        public string ReleaseDate => release_date.Substring(0,4);
+        public string ReleaseDate => release_date.Substring(0, 4);
     }
 
     public class Belongs_To_Collection
